@@ -39,9 +39,9 @@
       <a href="index.html" class="volver-card">Volver</a>
     </div>
     <footer id="footer" style="margin-top: 30px;">
-      <p id="footer-text" style="font-family: 'Oswald', serif; text-transform: uppercase; font-size: 17px; display: block; margin-top: 6px;color: black">
+      <p id="footer-text" style="font-family: 'Oswald', serif; text-transform: uppercase; font-size: 17px; display: block; margin-top: 6px; color: black">
         Seguinos en Instagram<br>
-        <a id="footer-link" href="https://www.instagram.com/padrecoffeeroasters" target="_blank" style="text-transform: lowercase; text-decoration: none;">@padrecoffeeroasters</a>
+        <a id="footer-link" href="https://www.instagram.com/padrecoffeeroasters" target="_blank" style="text-transform: lowercase; text-decoration: none; color: black">@padrecoffeeroasters</a>
       </p>
     </footer>
   </div>
@@ -78,8 +78,8 @@
         document.querySelector("#info-header span").style.color = "white";
         document.getElementById("faltan").style.color = "#000000";
         document.getElementById("cliente").style.color = "white";
-        document.getElementById("footer-text").style.color = "white";
-        document.getElementById("footer-link").style.color = "white";
+        document.getElementById("footer-text").style.color = "black";
+        document.getElementById("footer-link").style.color = "black";
 
         await addDoc(collection(db, "logs"), {
           usuario: dni,
