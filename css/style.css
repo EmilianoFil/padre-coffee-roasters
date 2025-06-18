@@ -95,8 +95,8 @@ input {
   margin: 14px 0;
   border: 2px solid var(--color-letra-primaria);
   border-radius: 8px;
-  background-color: var(--color-letra-primaria);
-  color: black;
+  background-color: var(--color-contenedor);
+  color: rgb(255, 255, 255);
   font-weight: bold;
   box-sizing: border-box;
   text-align: center;
@@ -108,8 +108,8 @@ button, .btn-primary {
   font-family: var(--tipografia-primaria);
   font-size: 12px;
   margin: 12.5px auto;
-  background-color: var(--color-primario);
-  color: var(--color-letra-primaria);
+  background-color: var(--color-secundario);
+  color: var(--color-primario);
   border: none;
   border-radius: 8px;
   cursor: pointer;
