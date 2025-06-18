@@ -4,8 +4,8 @@
   --color-secundario: #000000;
   --color-terciario: #656565;
   --color-fondo: #fdfcf7;
-  --color-contenedor: #f3f1e8;
-  --color-mensaje-contenedor: #f3f1e8;
+  --color-contenedor: #ffffff;
+  --color-mensaje-contenedor: #ffffff;
   --color-letra-primaria: #000000;
   --color-letra-secundaria: #3a3a3a;
   --color-letra-mensaje: #000000;
@@ -361,7 +361,7 @@ footer a[href*="instagram.com"]::before {
   border: 2px solid var(--color-letra-primaria);
   border-radius: 8px;
   background-color: var(--color-letra-primaria);
-  color: black;
+  color: var(--color-primario)
   font-weight: bold;
   text-align: center;
 }
