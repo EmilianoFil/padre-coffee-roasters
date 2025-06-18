@@ -3,36 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- SEO GOOGLE INICIO -->
-  <meta name="description" content="Sumá cafecitos con tu DNI en Córcega y canjeá el tuyo ☕">
-  <meta name="keywords" content="cafecito, fidelización, Córcega, café gratis, rebeldía cafetera, cafe de especialidad">
-  <meta name="author" content="Córcega Cafe">
-  <meta property="og:title" content="Club de Cafe - Córcega">
-  <meta property="og:description" content="Comprando cafés, acumulás 8 y te invitamos uno. Consultá tu estado con tu DNI.">
-  <meta property="og:image" content="https://corcegacafe.com.ar/css/img/logo-corcega-color.png">
-  <meta property="og:url" content="https://corcegacafe.com.ar">
-  <!-- SEO GOOGLE FIN -->  
   
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
   <meta name="color-scheme" content="light" />
   <title>Registro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Syncopate&display=swap" rel="stylesheet"> <!-- Tipografías personalizadas --> <!--//Agrego para uso de letra -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&family=Montserrat:wght@400;600&display=swap');" rel="stylesheet"> <!-- Tipografías personalizadas --> <!--//Agrego para uso de letra -->
   <link rel="stylesheet" href="css/style.css" />
-
-  <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NXMC00DZ81"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-NXMC00DZ81');
-  </script>
 
 </head>
 <body>
   <div class="menu-style">
-  <img src="css/img/Corcega_Logo_Letras_Blanco.png" alt="Córcega Café" class="logo" />
+  <img src="css/img/logo.png" alt="Córcega Café" class="logo" />
   <form id="registroForm" data-gtm-form-interact-id="0">
     <input type="tel" name="dni" id="dni" placeholder="DNI" aria-label="Número de DNI" inputmode="numeric" pattern="[0-9]{7,8}" maxlength="8" required title="Debe tener entre 7 y 8 números">
     <input type="text" name="nombre" placeholder="Nombre y apellido" aria-label="Nombre y apellido" required pattern="^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$" title="Sólo letras y espacios">
@@ -62,7 +43,7 @@
   </form>
 
   <div id="loader" style="display: none; margin-top: 20px; text-align: center; width: 100%;">
-    <img src="css/img/Corcega_Logo_Naranja.png" class="galope" style="width: 95px; display: inline-block;">
+    <img src="css/img/logo.png" class="galope" style="width: 95px; display: inline-block;">
   </div>
   <div id="mensaje-container" style="display: none; text-align: center;">
     <div style="padding: 30px 20px; background: #01323f; border-radius: 12px; font-size: 18px; color: #008ba4;">
@@ -80,7 +61,7 @@
   <footer style="margin-top: 30px;">
       <p style="color: white; font-family: 'Playfair Display', serif; text-transform: uppercase; font-size: 17px; display: block; margin-top: 6px;">
       Seguinos en Instagram<br>
-      <a href="https://www.instagram.com/corcegacafe" target="_blank" style="color: white; text-transform: lowercase; text-decoration: none;">@corcegacafe</a>
+      <a href="https://www.instagram.com/padrecoffeeroasters" target="_blank" style="color: white; text-transform: lowercase; text-decoration: none;">@padrecoffeeroasters</a>
     </p>
   </footer>
 </div>
@@ -183,16 +164,6 @@
             window.location.href = `estado.html?dni=${dni}`;
           };
 
-          // Enviar mail de bienvenida usando Firebase Function
-          fetch("https://us-central1-corcega-loyalty-club.cloudfunctions.net/enviarMailRegistro", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ dni, nombre, mail: email })
-          }).then(() => {
-            console.log("📧 Mail de bienvenida enviado con éxito.");
-          }).catch(error => {
-            console.error("❌ Error al enviar el mail:", error);
-          });
         } else {
           document.getElementById("mensaje").innerText = "Ya estás registrado en el club.";
           const volverBtn = document.getElementById("volverBtn");

@@ -1,9 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;700&family=Montserrat:wght@400;600&display=swap');
+:root {
+  --color-primario: #ffffff;
+  --color-secundario: #000000;
+  --color-terciario: #656565;
+  --color-fondo: #fdfcf7;
+  --color-contenedor: #f3f1e8;
+  --color-mensaje-contenedor: #f3f1e8;
+  --color-letra-primaria: #000000;
+  --color-letra-secundaria: #3a3a3a;
+  --color-letra-mensaje: #000000;
+  --tipografia-primaria: 'Oswald', sans-serif;
+  --tipografia-secundaria: 'Montserrat', sans-serif;
+  --tipografia-mensaje: 'Montserrat', sans-serif;
+}
+
 /* Base general */
 body {
   margin: 0;
-  font-family: 'Syncopate', serif;
-  background-color: #fdfcf7;
-  color: #ffffff;
+  font-family: var(--tipografia-primaria);
+  background-color: var(--color-fondo);
+  color: var(--color-letra-primaria);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,7 +36,7 @@ body::before {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url('img/wallpaper.png');
+  background-color: white;
   background-repeat: repeat;
   background-size: 600px;
   background-position: center;
@@ -34,7 +50,7 @@ body::before {
   max-width: 480px;
   margin: 40px auto;
   padding: 20px 20px;
-  background: #01323f;
+  background: var(--color-secundario);
   border-radius: 16px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   text-align: center;
@@ -65,10 +81,10 @@ h1 {
 
 h2 {
   font-size: 18px;
-  font-family: 'Playfair Display', serif;
+  font-family: var(--tipografia-secundaria);
   margin-top: 10px;
   padding-bottom: 5px;
-  color: white;
+  color: var(--color-letra-primaria);
 }
 
 /* Inputs */
@@ -77,9 +93,9 @@ input {
   font-size: 16px;
   width: 100%;
   margin: 14px 0;
-  border: 2px solid white;
+  border: 2px solid var(--color-letra-primaria);
   border-radius: 8px;
-  background-color: white;
+  background-color: var(--color-letra-primaria);
   color: black;
   font-weight: bold;
   box-sizing: border-box;
@@ -89,11 +105,11 @@ input {
 /* Botones */
 button, .btn-primary {
   padding: 10px 20px;
-  font-family: 'Syncopate', serif;
+  font-family: var(--tipografia-primaria);
   font-size: 12px;
   margin: 12.5px auto;
-  background-color: #ed7053;
-  color: white;
+  background-color: var(--color-primario);
+  color: var(--color-letra-primaria);
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -106,9 +122,9 @@ button, .btn-primary {
 .btn-secondary {
   padding: 8px 16px;
   font-size: 14px;
-  background: white;
-  color: #d86634;
-  border: 2px solid #ed7053;
+  background: var(--color-letra-primaria);
+  color: var(--color-primario);
+  border: 2px solid var(--color-primario);
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
@@ -119,14 +135,14 @@ button, .btn-primary {
 .mensaje {
   margin-top: 20px;
   font-weight: bold;
-  color: #008ba4;
+  color: var(--color-letra-mensaje);
   white-space: pre-line;
 }
 
 .mensaje.error,
 .mensaje.ok,
 .mensaje a {
-  color: #008ba4;
+  color: var(--color-letra-mensaje);
 }
 
 .mensaje a {
@@ -159,7 +175,7 @@ button, .btn-primary {
   display: block;
   text-align: center;
   text-decoration: none;
-  color: #ffffff;
+  color: var(--color-letra-primaria);
   font-weight: bold;
   margin: 8px 0;
   cursor: pointer;
@@ -183,7 +199,7 @@ ul {
 ul li {
   margin: 8px 0;
   padding: 8px;
-  background: #f3f1e8;
+  background: var(--color-contenedor);
   border-radius: 6px;
 }
 
@@ -200,9 +216,9 @@ section {
 
 /* Tarjeta de fidelidad */
 .tarjeta-fidelidad {
-  background: #ed7053;
+  background: var(--color-primario);
   width: 90% !important;
-  color: #01323f;
+  color: var(--color-letra-secundaria);
   padding: 20px 20px !important;
   border-radius: 16px;
   max-width: 400px;
@@ -224,7 +240,7 @@ section {
 .tarjeta-fidelidad .circle {
   width: 80px;
   height: 80px;
-  border: 2px solid white;
+  border: 2px solid var(--color-letra-primaria);
   border-radius: 50%;
   background-size: 60%;
   background-repeat: no-repeat;
@@ -233,12 +249,12 @@ section {
 }
 
 .tarjeta-fidelidad .circle.lleno {
-  background-image: url("img/Corcega_Logo_Blanco.png");
+  background-image: url("img/logo.png");
   opacity: 1;
 }
 
 .tarjeta-fidelidad .circle.noveno {
-  background-image: url("img/Corcega_Logo_Original.png");
+  background-image: url("img/logo.png");
   opacity: 1;
 }
 
@@ -247,14 +263,14 @@ section {
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 10px;
-  color: #01323f;
+  color: var(--color-letra-secundaria);
 }
 
 .tarjeta-fidelidad #faltan {
   font-size: 16px;
   font-weight: normal;
   margin-bottom: 20px;
-  color: #01323f;
+  color: var(--color-letra-secundaria);
 }
 
 /* Instagram */
@@ -273,8 +289,8 @@ footer a[href*="instagram.com"]::before {
 #mensaje-error .boton {
   margin-top: 20px;
   display: inline-block;
-  background-color: #ed7053;
-  color: white;
+  background-color: var(--color-primario);
+  color: var(--color-letra-primaria);
   font-weight: bold;
   text-decoration: none;
   padding: 10px 20px;
@@ -293,8 +309,8 @@ footer a[href*="instagram.com"]::before {
 
   h2 {
     font-size: 16px;
-    font-family: 'Playfair Display', serif;
-    color: white;
+    font-family: var(--tipografia-secundaria);
+    color: var(--color-letra-primaria);
   }
 
   input, button {
@@ -314,8 +330,8 @@ footer a[href*="instagram.com"]::before {
 
 /* Botón blanco en tarjeta de fidelidad */
 .tarjeta-fidelidad .volver-card {
-  background-color: white;
-  color: #ed7053;
+  background-color: var(--color-letra-primaria);
+  color: var(--color-primario);
   font-weight: bold;
   border: none;
   padding: 12px 20px;
@@ -326,8 +342,8 @@ footer a[href*="instagram.com"]::before {
 }
 
 .btn-estadisticas {
-  background-color: white;
-  color: #ed7053;
+  background-color: var(--color-letra-primaria);
+  color: var(--color-primario);
   padding: 10px 12px;
   border-radius: 8px;
   text-decoration: none;
@@ -342,9 +358,9 @@ footer a[href*="instagram.com"]::before {
   font-size: 16px;
   width: 43%;
   margin: 10px 0;
-  border: 2px solid white;
+  border: 2px solid var(--color-letra-primaria);
   border-radius: 8px;
-  background-color: white;
+  background-color: var(--color-letra-primaria);
   color: black;
   font-weight: bold;
   text-align: center;
