@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Admin - Detalle Cliente</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Syncopate&display=swap" rel="stylesheet"> <!-- Tipografías personalizadas --> <!--//Agrego para uso de letra -->
+  <link rel="stylesheet" href="css/panel.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Playfair Display', serif;
+      background-color: #fdfcf7;
+      color: #01323f;
+    }
+
+    .menu-style {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 40px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    }
+
+    input {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+      max-width: 400px;
+      margin: 10px auto 20px;
+      display: block;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #d86634;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #loader {
+      display: none;
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    .galope {
+      width: 80px;
+      animation: galopar 1s infinite ease-in-out alternate;
+    }
+
+    @keyframes galopar {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+    }
+
+    .resultado {
+      margin-top: 30px;
+    }
+
+    .info-cliente {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 20px;
+      background-color: #fafafa;
+    }
+
+    .info-cliente p {
+      margin: 10px 0;
+    }
+
+    .info-cliente strong {
+      display: inline-block;
+      width: 200px;
+    }
+
+    .volver {
+      display: inline-block;
+      margin-top: 30px;
+      color: #eb6f53;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body style="margin: 0; background-color: #fdfcf7; font-family: 'Playfair Display', serif; color: #1d1d1d;">
+  <div class="menu-style" style="max-width: 600px; margin: 40px auto; padding: 40px; background: white; border: 1px solid #ccc; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.05); text-align: center;">
+    
+    <h1 style="margin-bottom: 20px;">Buscar Cliente</h1>
+
+    <input type="text" id="busqueda" placeholder="DNI o nombre y apellido"
+      style="padding: 10px; width: 80%; max-width: 300px; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 15px;" />
+
+    <br>
+
+    <button id="buscarBtn"
+      style="background-color: #d86634; color: white; padding: 10px 20px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; margin-bottom: 20px;">
+      Buscar
+    </button>
+
+    <div id="loader" style="display: none; margin-bottom: 20px;">
+      <img src="css/img/Corcega_Logo_Original.png" class="galope" style="width: 80px; animation: galopar 1s infinite ease-in-out alternate;" />
+    </div>
+
+    <div id="resultado" class="resultado" style="text-align: left;"></div>
+
+    <div style="margin-top: 30px;">
+      <a href="admin.html" style="color: #eb6f53; font-weight: bold; text-decoration: none;">⬅ Volver al panel</a>
+    </div>
+  </div>
+
+  <script type="module">
+    import { auth, onAuthStateChanged } from './js/firebase-auth.js';
+    import { db } from './js/firebase-config.js';
+    import {
+      doc, getDoc, collection, getDocs
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    onAuthStateChanged(auth, async (user) => {
+      if (!user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      const ref = doc(db, "admin", user.uid);
+      const snap = await getDoc(ref);
+      if (!snap.exists() || snap.data().rol !== "dueño") {
+        alert("Acceso restringido a dueños.");
+        window.location.href = "login.html";
+      }
+    });
+
+    document.getElementById("buscarBtn").addEventListener("click", async () => {
+      const termino = document.getElementById("busqueda").value.trim().toLowerCase();
+      const loader = document.getElementById("loader");
+      const resultado = document.getElementById("resultado");
+      resultado.innerHTML = "";
+      loader.style.display = "block";
+
+      const ref = collection(db, "clientes");
+      const snapshot = await getDocs(ref);
+
+      loader.style.display = "none";
+
+      let encontrado = null;
+      snapshot.forEach(docSnap => {
+        const data = docSnap.data();
+        if (
+          data.dni.toLowerCase() === termino ||
+          data.nombre.toLowerCase().includes(termino)
+        ) {
+          encontrado = data;
+        }
+      });
+
+      if (!encontrado) {
+        resultado.innerHTML = "<p>No se encontró ningún cliente con ese dato.</p>";
+        return;
+      }
+
+      const alta = encontrado.creado?.toDate?.();
+      const dias = alta ? Math.floor((Date.now() - alta.getTime()) / (1000 * 60 * 60 * 24)) : null;
+      const formatFecha = (fecha) => {
+        const d = fecha.getDate().toString().padStart(2, '0');
+        const m = (fecha.getMonth() + 1).toString().padStart(2, '0');
+        const y = fecha.getFullYear();
+        return `${d}/${m}/${y}`;
+      };
+
+const altaTexto = alta ? `${formatFecha(alta)} (${dias} días)` : "—";
+
+      const ultimo = encontrado.ultimo_cafe?.toDate?.();
+      const ultimoTexto = ultimo ? ultimo.toLocaleString() : "—";
+
+      resultado.innerHTML = `
+        <div class="info-cliente" style="padding: 20px; background: #f8f6f2; border-radius: 10px; border: 1px solid #ccc;">
+          <p><strong>DNI:</strong> ${encontrado.dni}</p>
+          <p><strong>Nombre:</strong> ${encontrado.nombre}</p>
+          <p><strong>Email:</strong> ${encontrado.email}</p>
+          <p><strong>Fecha de alta:</strong> ${altaTexto}</p>
+          <p><strong>Cafecitos acumulados:</strong> ${encontrado.cafes}</p>
+          <p><strong>Total histórico:</strong> ${encontrado.cafes_acumulados_total}</p>
+          <p><strong>¿Tiene café gratis?</strong> ${encontrado.cafe_disponible ? "Sí ☕" : "No"}</p>
+          <p><strong>Último café:</strong> ${ultimoTexto}</p>
+        </div>
+      `;
+    });
+  </script>
+</body>
+</html>

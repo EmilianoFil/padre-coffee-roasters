@@ -1,0 +1,367 @@
+/* Base general */
+body {
+  margin: 0;
+  font-family: 'Syncopate', serif;
+  background-color: #fdfcf7;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+  position: relative;
+}
+
+/* Agrego para fondo */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url('img/wallpaper.png');
+  background-repeat: repeat;
+  background-size: 600px;
+  background-position: center;
+  opacity: 0.75;
+  z-index: -1;
+  pointer-events: none;
+}
+/* Card principal */
+.menu-style {
+  width: 90%;
+  max-width: 480px;
+  margin: 40px auto;
+  padding: 20px 20px;
+  background: #01323f;
+  border-radius: 16px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* Logo (caballito) */
+.logo, .galope {
+  width: 250px;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.galope {
+  animation: galopar 1s infinite ease-in-out alternate;
+}
+
+@keyframes galopar {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-10px); }
+}
+
+/* Títulos */
+h1 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  font-size: 18px;
+  font-family: 'Playfair Display', serif;
+  margin-top: 10px;
+  padding-bottom: 5px;
+  color: white;
+}
+
+/* Inputs */
+input {
+  padding: 14px;
+  font-size: 16px;
+  width: 100%;
+  margin: 14px 0;
+  border: 2px solid white;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* Botones */
+button, .btn-primary {
+  padding: 10px 20px;
+  font-family: 'Syncopate', serif;
+  font-size: 12px;
+  margin: 12.5px auto;
+  background-color: #ed7053;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 10px;
+  white-space: nowrap; 
+}
+
+.btn-secondary {
+  padding: 8px 16px;
+  font-size: 14px;
+  background: white;
+  color: #d86634;
+  border: 2px solid #ed7053;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Mensajes */
+.mensaje {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #008ba4;
+  white-space: pre-line;
+}
+
+.mensaje.error,
+.mensaje.ok,
+.mensaje a {
+  color: #008ba4;
+}
+
+.mensaje a {
+  text-decoration: underline;
+  display: inline-block;
+  margin: 5px;
+}
+
+/* Loader */
+#loader {
+  width: 95px;
+  display: none;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Usuario y logout */
+#usuarioLogueado {
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.logout {
+  margin-top: 20px;
+}
+
+.logout a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+  margin: 8px 0;
+  cursor: pointer;
+}
+
+.logout a.volver {
+  font-size: 15px;
+}
+
+.logout a.cerrar {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* Resumen y listas */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 8px 0;
+  padding: 8px;
+  background: #f3f1e8;
+  border-radius: 6px;
+}
+
+section {
+  margin-top: 20px;
+}
+
+.restriccion {
+  text-align: center;
+  color: #aa0000;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Tarjeta de fidelidad */
+.tarjeta-fidelidad {
+  background: #ed7053;
+  width: 90% !important;
+  color: #01323f;
+  padding: 20px 20px !important;
+  border-radius: 16px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* Grid de círculos */
+.tarjeta-fidelidad .grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 280px;
+}
+
+.tarjeta-fidelidad .circle {
+  width: 80px;
+  height: 80px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.3;
+}
+
+.tarjeta-fidelidad .circle.lleno {
+  background-image: url("img/Corcega_Logo_Blanco.png");
+  opacity: 1;
+}
+
+.tarjeta-fidelidad .circle.noveno {
+  background-image: url("img/Corcega_Logo_Original.png");
+  opacity: 1;
+}
+
+/* Ajustes texto tarjeta fidelidad */
+.tarjeta-fidelidad #cliente {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #01323f;
+}
+
+.tarjeta-fidelidad #faltan {
+  font-size: 16px;
+  font-weight: normal;
+  margin-bottom: 20px;
+  color: #01323f;
+}
+
+/* Instagram */
+footer a[href*="instagram.com"]::before {
+  content: "";
+  display: inline-block;
+  background-image: url("https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png");
+  background-size: 16px 16px;
+  width: 16px;
+  height: 16px;
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* Botón destacado dentro de mensaje de error */
+#mensaje-error .boton {
+  margin-top: 20px;
+  display: inline-block;
+  background-color: #ed7053;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .menu-style {
+    padding: 30px 15px;
+  }
+
+  h1 {
+    font-size: 18px;
+  }
+
+  h2 {
+    font-size: 16px;
+    font-family: 'Playfair Display', serif;
+    color: white;
+  }
+
+  input, button {
+    font-size: 15px;
+  }
+
+  .logo {
+    width: 60px;
+    margin-bottom: 16px;
+  }
+
+  .tarjeta-fidelidad .circle {
+    width: 65px;
+    height: 65px;
+  }
+}
+
+/* Botón blanco en tarjeta de fidelidad */
+.tarjeta-fidelidad .volver-card {
+  background-color: white;
+  color: #ed7053;
+  font-weight: bold;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
+}
+
+.btn-estadisticas {
+  background-color: white;
+  color: #ed7053;
+  padding: 10px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 12.5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Boton día y mes de cumpleaños */
+.input-like {
+  padding: 10px;
+  font-size: 16px;
+  width: 43%;
+  margin: 10px 0;
+  border: 2px solid white;
+  border-radius: 8px;
+  background-color: white;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+.input-like option[disabled] {
+  color: #999;
+}
+
+.input-like option:first-child {
+  color: #999;
+  font-weight: normal;
+}
+
+#adminForm .button-row {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }

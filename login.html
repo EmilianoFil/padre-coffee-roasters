@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <title>Admin - Login</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Syncopate&display=swap" rel="stylesheet"> <!-- Tipografías personalizadas --> <!--//Agrego para uso de letra -->
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NXMC00DZ81"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NXMC00DZ81');
+  </script>
+</head>
+<body>
+  <div class="menu-style">
+    <h1>Acceso Admin</h1>
+    <form id="loginForm">
+      <div style="margin-bottom: 10px;">
+        <input type="text" id="usuario" placeholder="Usuario" required />
+      </div>
+      <div style="margin-bottom: 10px;">
+        <input type="password" id="clave" placeholder="Contraseña" required />
+      </div>
+      <button type="submit" class="btn-primary">Ingresar</button>
+    </form>
+  <div id="loader" style="display: none; margin-top: 20px; text-align: center; width: 100%;">
+    <img src="css/img/Corcega_Logo_Naranja.png" class="galope" style="width: 95px; display: inline-block;">
+  </div>
+    <div class="mensaje error" id="errorMsg" style="display:none;">Usuario o clave incorrecta</div>
+  </div>
+
+  <script type="module">
+    import { app, db } from './js/firebase-config.js';
+    import { auth, signInWithEmailAndPassword } from './js/firebase-auth.js';
+    import { setPersistence, browserLocalPersistence } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
+    import { addDoc, collection } from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+    document.getElementById("loginForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const usuario = document.getElementById("usuario").value.trim();
+      const clave = document.getElementById("clave").value.trim();
+
+      document.getElementById("loader").style.display = "block";
+      document.getElementById("errorMsg").style.display = "none";
+
+      try {
+        await setPersistence(auth, browserLocalPersistence);
+        await signInWithEmailAndPassword(auth, usuario, clave);
+
+        localStorage.setItem("admin", "true");
+        localStorage.setItem("usuario", usuario);
+        sessionStorage.setItem("logueado", "true");
+
+        await addDoc(collection(db, "logs"), {
+          usuario,
+          accion: "iniciar_sesion",
+          detalles: "Login exitoso",
+          timestamp: new Date()
+        });
+
+        //AGREGO PARA GA
+        if (typeof gtag === 'function') {
+          gtag('event', 'admin_login');
+        }
+        //AGREGO PARA GA - FIN
+
+        window.location.href = "admin.html";
+      } catch (error) {
+        console.error("Error en login:", error);
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("errorMsg").style.display = "block";
+      }
+    });
+  </script>
+</body>
+</html>
