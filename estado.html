@@ -76,7 +76,7 @@
 
         // Set colors for error state
         document.querySelector("#info-header span").style.color = "white";
-        document.getElementById("faltan").style.color = "#008ba4";
+        document.getElementById("faltan").style.color = "#000000";
         document.getElementById("cliente").style.color = "white";
         document.getElementById("footer-text").style.color = "white";
         document.getElementById("footer-link").style.color = "white";
@@ -96,11 +96,11 @@
 
       contenedor.classList.add("tarjeta-fidelidad");
 
-      document.querySelector("#info-header span").style.color = "#01323f";
-      document.getElementById("faltan").style.color = "#01323f";
-      document.getElementById("cliente").style.color = "#01323f";
-      document.getElementById("footer-text").style.color = "#01323f";
-      document.getElementById("footer-link").style.color = "#01323f";
+      document.querySelector("#info-header span").style.color = "#000000";
+      document.getElementById("faltan").style.color = "#000000";
+      document.getElementById("cliente").style.color = "#000000";
+      document.getElementById("footer-text").style.color = "#000000";
+      document.getElementById("footer-link").style.color = "#000000";
 
       const data = snap.data();
 
@@ -131,7 +131,7 @@
       document.getElementById("cliente").textContent = `Hola ${nombre}`;
       document.getElementById("faltan").textContent = cafes < 8
         ? `Te faltan ${8 - cafes} para alcanzarlo`
-        : "¡El próximo lo invitamos nosotros! 🐎🎉";
+        : "¡El próximo lo invitamos nosotros! 🎉";
 
       document.getElementById("estado-accesible").textContent =
         cafes < 8
