@@ -361,7 +361,7 @@ footer a[href*="instagram.com"]::before {
   border: 2px solid var(--color-letra-primaria);
   border-radius: 8px;
   background-color: var(--color-primario);
-  color: var(--color-primario)
+  color: var(--color-letra-mensaje)
   font-weight: bold;
   text-align: center;
 }
