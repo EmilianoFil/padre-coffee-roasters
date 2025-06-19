@@ -96,7 +96,7 @@ input {
   border: 2px solid var(--color-letra-primaria);
   border-radius: 8px;
   background-color: var(--color-contenedor);
-  color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
   font-weight: bold;
   box-sizing: border-box;
   text-align: center;
