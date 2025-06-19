@@ -151,7 +151,7 @@
 
           await addDoc(collection(db, "logs"), {
             usuario: dni,
-            accion: "registro_cliente",
+            accion: "padre_registro_cliente",
             detalles: `Registro nuevo cliente ${dni} - ${nombre}`,
             timestamp: serverTimestamp()
           });

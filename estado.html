@@ -83,7 +83,7 @@
 
         await addDoc(collection(db, "logs"), {
           usuario: dni,
-          accion: "consulta_fallida",
+          accion: "padre_consulta_fallida",
           detalles: `Consulta fallida: DNI ${dni} no encontrado`,
           timestamp: new Date()
         });
@@ -116,7 +116,7 @@
 
       await addDoc(collection(db, "logs"), {
         usuario: data.dni,
-        accion: "consulta_cliente",
+        accion: "padre_consulta_cliente",
         detalles: `Consulta exitosa del cliente ${data.dni} - ${data.nombre}`,
         timestamp: new Date()
       });
